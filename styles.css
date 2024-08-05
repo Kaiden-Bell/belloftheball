@@ -10,7 +10,7 @@ body, html {
   .hero {
     position: relative;
     height: 100vh;
-    background: url('path/to/your/image.jpg') no-repeat center center/cover;
+    background: url('/assets/test.jpg') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +30,15 @@ body, html {
     position: relative;
     text-align: center;
   }
+
+  .business-name {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    max-width: 300px;
+    padding: 1em;
+  }
+
   
   h1 {
     font-size: 3rem;
