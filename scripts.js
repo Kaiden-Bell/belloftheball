@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides = document.getElementById('slides');
     const images = slides.getElementsByTagName('img');
     for (let i = 0; i < images.length; i++) {
-      images[i].style.display = "none";
+      images[i].classList.remove('active');
     }
     slideIndex++;
-    if (slideIndex > images.length) {slideIndex = 1}
-    images[slideIndex-1].style.display = "block";
+    if (slideIndex > images.length) { slideIndex = 1 }
+    images[slideIndex - 1].classList.add('active');
     setTimeout(showSlides, 2000); // Change image every 2 seconds
   }
 
@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides = document.getElementById('slides');
     const images = slides.getElementsByTagName('img');
     slideIndex += n;
-    if (slideIndex > images.length) {slideIndex = 1}
-    if (slideIndex < 1) {slideIndex = images.length}
+    if (slideIndex > images.length) { slideIndex = 1 }
+    if (slideIndex < 1) { slideIndex = images.length }
     for (let i = 0; i < images.length; i++) {
-      images[i].style.display = "none";
+      images[i].classList.remove('active');
     }
-    images[slideIndex-1].style.display = "block";
+    images[slideIndex - 1].classList.add('active');
   }
 
   // Load images from JSON file
@@ -59,9 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slides.appendChild(img);
       });
       showSlides();
-    });
+  });
 
-  // Attach the plusSlides function to buttons
-  document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
-  document.querySelector('.next').addEventListener('click', () => plusSlides(1));
+  window.plusSlides = plusSlides;
 });
