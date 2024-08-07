@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Slider functionality
   let slideIndex = 0;
 
   function showSlides() {
