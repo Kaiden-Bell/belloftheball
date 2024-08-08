@@ -341,5 +341,56 @@ button[type="submit"]:hover {
   background-color: #d81b60;
 }
 
+/* Footer Styling */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 20px;
+  max-width: 300px;
+}
+
+.footer-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.footer-section a {
+  display: inline-block;
+  margin: 10px;
+}
+
+.footer-section img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid #777;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.footer-section.social img:hover {
+  opacity: 0.8;
+}
 
 
