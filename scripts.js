@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Dropdown menu for Nav Bar
+  const menuToggle = document.querySelector('.menu-toggle');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  menuToggle.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('menu-open');
+  });
+
+
+  // TypeWriter
   const businessName = "BELL OF THE BALL";
   let i = 0;
   const typingSpeed = 52;
@@ -21,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+
+  // Slide function for Portfolio
   let slideIndex = 0;
 
   function showSlides() {
