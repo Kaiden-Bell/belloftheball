@@ -36,7 +36,7 @@ body, html {
   height: 20px;
   width: 25px;
   position: relative;
-  right: 50px; /* Adjust this value to move the dashed lines to the left */
+  left: 75px; /* Adjust this value to move the dashed lines to the left */
 }
 
 /* Styling for the three bars of the menu toggle */
