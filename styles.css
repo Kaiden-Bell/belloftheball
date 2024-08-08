@@ -27,6 +27,10 @@ body, html {
   font-size: 18px;
 }
 
+.nav-right {
+  position: relative;
+}
+
 .nav-right .menu-toggle {
   cursor: pointer;
   display: flex;
@@ -36,9 +40,9 @@ body, html {
   width: 25px;
   position: absolute; /* Make it easier to adjust the position */
   top: 10px;
-  left: 30px; /* Adjust this value to move the dashed lines to the left */
+  position: absolute;
+  right: 10px; /* Adjust this value to position the menu-toggle */
 }
-
 
 .nav-right .menu-toggle .bar {
   width: 100%;
@@ -47,16 +51,16 @@ body, html {
   border-radius: 2px;
 }
 
+/* Dropdown menu styles */
 .nav-right .dropdown-menu {
   display: none;
   position: absolute;
-  top: 50px;
-  right: 10px; /* Adjust this value to align with the toggle button */
+  top: 40px; /* Adjusted for spacing below the navbar */
+  right: 0;
   background-color: #333;
   list-style-type: none;
   padding: 10px 0;
   border-radius: 5px;
-  z-index: 1000; /* Ensure it appears above other content */
 }
 
 .nav-right .dropdown-menu li {
@@ -73,7 +77,8 @@ body, html {
   background-color: #555;
 }
 
-.nav-right .menu-open .dropdown-menu {
+/* Toggle the dropdown menu */
+.menu-open + .dropdown-menu {
   display: block;
 }
 

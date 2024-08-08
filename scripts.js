@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const servicesSection = document.getElementById('services');
 
   menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('menu-open');
     dropdownMenu.classList.toggle('menu-open');
   });
 
