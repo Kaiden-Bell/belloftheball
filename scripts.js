@@ -1,13 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Dropdown menu for Nav Bar
+  // Nav Bar Scripts
   const menuToggle = document.querySelector('.menu-toggle');
   const dropdownMenu = document.querySelector('.dropdown-menu');
+  const navbar = document.querySelector('.navbar');
+  const servicesSection = document.getElementById('services');
 
   menuToggle.addEventListener('click', () => {
     dropdownMenu.classList.toggle('menu-open');
   });
 
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const servicesOffsetTop = servicesSection.offsetTop;
+
+    if (scrollPosition >= servicesOffsetTop - navbar.offsetHeight) {
+      navbar.style.top = `-${navbar.offsetHeight}px`; // Hide the navbar when you reach the services section
+    } else {
+      navbar.style.top = '0'; // Make the navbar visible while scrolling
+    }
+
+    if (scrollPosition > 50) {
+      document.body.classList.add('scrolled');
+    } else {
+      document.body.classList.remove('scrolled');
+    }
+  });
 
   // TypeWriter
   const businessName = "BELL OF THE BALL";
