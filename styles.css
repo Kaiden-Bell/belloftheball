@@ -34,7 +34,11 @@ body, html {
   justify-content: space-between;
   height: 20px;
   width: 25px;
+  position: absolute; /* Make it easier to adjust the position */
+  top: 10px;
+  right: 30px; /* Adjust this value to move the dashed lines to the left */
 }
+
 
 .nav-right .menu-toggle .bar {
   width: 100%;
@@ -47,11 +51,12 @@ body, html {
   display: none;
   position: absolute;
   top: 50px;
-  right: 20px;
+  right: 30px; /* Adjust this value to align with the toggle button */
   background-color: #333;
   list-style-type: none;
   padding: 10px 0;
   border-radius: 5px;
+  z-index: 1000; /* Ensure it appears above other content */
 }
 
 .nav-right .dropdown-menu li {
