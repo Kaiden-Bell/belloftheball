@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // Nav Bar Scripts
+  const menuToggle = document.querySelector('.menu-toggle');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
   const navbar = document.querySelector('.navbar');
   const servicesSection = document.getElementById('services');
+
+  menuToggle.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('menu-open');
+  });
 
   window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY;
