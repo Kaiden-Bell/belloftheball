@@ -3,28 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Nav Bar Scripts
   const menuToggle = document.querySelector('.menu-toggle');
   const dropdownMenu = document.querySelector('.dropdown-menu');
-  const navbar = document.querySelector('.navbar');
-  const servicesSection = document.getElementById('services');
 
   menuToggle.addEventListener('click', () => {
     dropdownMenu.classList.toggle('menu-open');
-  });
-
-  window.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
-    const servicesOffsetTop = servicesSection.offsetTop;
-
-    if (scrollPosition >= servicesOffsetTop - navbar.offsetHeight) {
-      navbar.style.top = `-${navbar.offsetHeight}px`; // Hide the navbar when you reach the services section
-    } else {
-      navbar.style.top = '0'; // Make the navbar visible while scrolling
-    }
-
-    if (scrollPosition > 50) {
-      document.body.classList.add('scrolled');
-    } else {
-      document.body.classList.remove('scrolled');
-    }
   });
 
   // TypeWriter
@@ -50,45 +31,87 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.classList.add('lightbox');
+    document.body.appendChild(lightbox);
+
+  galleryItems.forEach(item => {
+      item.addEventListener('click', e => {
+          e.preventDefault();
+          lightbox.style.display = 'block';
+          const img = document.createElement('img');
+          img.src = item.href;
+          while (lightbox.firstChild) {
+            lightbox.removeChild(lightbox.firstChild);
+          }
+          lightbox.appendChild(img);
+      });
+  });
+
+  lightbox.addEventListener('click', e => {
+      if (e.target !== e.currentTarget) return;
+      lightbox.style.display = 'none';
+  });
 
   // Slide function for Portfolio
-  let slideIndex = 0;
+  document.addEventListener("DOMContentLoaded", function() {
+    const pageType = document.body.getAttribute('data-page-type');
+    let folder = '';
 
-  function showSlides() {
-    const slides = document.getElementById('slides');
-    const images = slides.getElementsByTagName('img');
-    for (let i = 0; i < images.length; i++) {
-      images[i].classList.remove('active');
+    if (pageType === 'balloons') {
+        folder = 'images/balloons';
+    } else if (pageType === 'weddings') {
+        folder = 'images/weddings';
     }
-    slideIndex++;
-    if (slideIndex > images.length) { slideIndex = 1 }
-    images[slideIndex - 1].classList.add('active');
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
-  }
 
-  function plusSlides(n) {
-    const slides = document.getElementById('slides');
-    const images = slides.getElementsByTagName('img');
-    slideIndex += n;
-    if (slideIndex > images.length) { slideIndex = 1 }
-    if (slideIndex < 1) { slideIndex = images.length }
-    for (let i = 0; i < images.length; i++) {
-      images[i].classList.remove('active');
+    if (folder) {
+        loadImagesFromFolder(folder, 'slides');
     }
-    images[slideIndex - 1].classList.add('active');
-  }
+});
 
-  // Load images from JSON file
-  fetch('images.json')
-    .then(response => response.json())
-    .then(data => {
-      const slides = document.getElementById('slides');
-      data.images.forEach(image => {
-        const img = document.createElement('img');
-        img.src = image;
-        slides.appendChild(img);
-      });
-      showSlides();
-  });
-  window.plusSlides = plusSlides;
+async function loadImagesFromFolder(folderPath, containerId) {
+    const container = document.getElementById(containerId);
+
+    try {
+        const response = await fetch(folderPath);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const images = Array.from(doc.querySelectorAll('a')).map(a => a.href).filter(href => href.match(/\.(jpg|jpeg|png|gif)$/i));
+
+        images.forEach(imageSrc => {
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.classList.add('slide-img');
+            img.style.display = 'none';
+            container.appendChild(img);
+        });
+
+        if (images.length > 0) {
+            showSlides(container);
+        }
+    } catch (error) {
+        console.error('Error loading images:', error);
+    }
+}
+
+function showSlides(slidesContainer) {
+    const images = slidesContainer.getElementsByTagName('img');
+    let slideIndex = 0;
+
+    function displaySlides() {
+        for (let i = 0; i < images.length; i++) {
+            images[i].classList.remove('active');
+        }
+        slideIndex++;
+        if (slideIndex > images.length) { slideIndex = 1 }
+        images[slideIndex - 1].classList.add('active');
+        setTimeout(displaySlides, 2000); // Change image every 2 seconds
+    }
+
+    displaySlides();
+}
+
 });

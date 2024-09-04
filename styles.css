@@ -1,4 +1,8 @@
 /* General Styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -12,9 +16,9 @@ body, html {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #FF968A;
   color: #fff;
-  position: fixed;
+  position: fixed; /* Make the navbar sticky */
   top: 0;
   width: 100%;
   z-index: 1000;
@@ -27,6 +31,7 @@ body, html {
   font-size: 18px;
 }
 
+/* Adjusting the position of the menu toggle */
 .nav-right .menu-toggle {
   cursor: pointer;
   display: flex;
@@ -35,9 +40,10 @@ body, html {
   height: 20px;
   width: 25px;
   position: relative;
-  right: 27px; /* Adjust this value to move the dashed lines to the left */
+  right: 40px; /* Adjust this value to move the dashed lines to the left */
 }
 
+/* Styling for the three bars of the menu toggle */
 .nav-right .menu-toggle .bar {
   width: 100%;
   height: 4px;
@@ -45,20 +51,17 @@ body, html {
   border-radius: 2px;
 }
 
+/* Dropdown menu styles */
 .nav-right .dropdown-menu {
   display: none;
   position: absolute;
-  top: 50px;
-  right: 27px; /* Align with the right side of the menu toggle */
-  background-color: #333;
+  top: 20px;
+  right: 40px; /* Align with the right side of the menu toggle */
+  background-color: #FF968A;
   list-style-type: none;
   padding: 10px 0;
   border-radius: 5px;
-  z-index: 1000;
-}
-
-.nav-right .dropdown-menu.menu-open {
-  display: block;
+  z-index: 1000; /* Ensure it stays on top */
 }
 
 .nav-right .dropdown-menu li {
@@ -75,8 +78,9 @@ body, html {
   background-color: #555;
 }
 
-body.scrolled .navbar {
-  background-color: #444; /* Darker background when scrolled */
+/* Display the dropdown menu when 'menu-open' is applied */
+.nav-right .dropdown-menu.menu-open {
+  display: block;
 }
 
 
@@ -165,6 +169,8 @@ body.scrolled::before {
 }
   
 #services h2 {
+  color: white;
+  font-weight: 900;
   margin-bottom: 50px;
   font-size: 2.5rem;
   text-align: center;
@@ -218,7 +224,7 @@ body.scrolled::before {
 }
   
 .service-card-back {
-  background: peachpuff; /* Pastel pink */
+  background: #FF968A; /* */
   color: white;
   transform: rotateY(180deg);
 }
@@ -233,60 +239,221 @@ body.scrolled::before {
   font-size: 1rem;
 }
 
-/* Portfolio Section */
-.container {
+.service-card-back {
   position: relative;
-  width: 80%;
-  max-width: 1000px;
-  margin: auto;
-  overflow: hidden;
-}
-  
-.slides-container {
-  position: relative;
-}
-  
-.slides-container img {
-  width: 100%;
-  display: none;
-  max-height: 500px;
-  object-fit: cover; /* Ensures images cover the container while maintaining aspect ratio */
-}
-  
-.slides-container img.active {
-  display: block;
-}
-  
-.nav-button {
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  cursor: pointer;
-  user-select: none;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  background-color: rgba(0,0,0,0.5);
-}
-  
-.nav-button:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-  
-.prev {
-  left: 0;
-  border-radius: 3px 0 0 3px;
-}
-  
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.learn-more-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #e91e63;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background-color: #ff69b4;
+}
+
+/* Rentals Section */
+.rentals .rental-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 100px 20px 20px;
+}
+
+.rental-grid .gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+.rental-grid .gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+.rental-title {
+  font-weight: 500;
+  color: #333;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Portfolio Section */
+.portfolio-gallery {
+  padding: 100px 20px 20px;
+  background-color: #f4f4f4;
+}
+
+.portfolio-gallery img {
+  width: 100%;
+  object-fit: cover;
+  height: auto; 
+  aspect-ratio: 16 / 9;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.lightbox-content img {
+  width: 100%;
+  height: auto;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* Balloon Portfolio Section */
+
+.balloon-menu {
+  overflow: hidden;
+  cursor: grab;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  height: 40vh;
+
+  &.is-dragging {
+    cursor: grabbing;
+  }
+
+  &--wrapper {
+    counter-reset: count;
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &--item {
+    counter-increment: count;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 30vw;
+    height: 100%;
+    padding: 0 1.5vw;
+    overflow: hidden;
+
+    @media (max-width: 767px) {
+      width: 40vw;
+      height: 40vw;
+    }
+
+    &:nth-child(n+10):before {
+      content: counter(count);
+    }
+
+    figure {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      user-select: none;
+      -webkit-appearance: none;
+      padding: 0;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      transform-origin: center;
+
+    img {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      vertical-align: middle;
+      transform-origin: center;
+    }
+
+    &:before {
+      position: absolute;
+      z-index: 2;
+      bottom: 1vw;
+      left: 1vw;
+      display: inline-block;
+      content: "0" counter(count);
+      color: #ffffff;
+      font-size: 3vw;
+    }
+  }
+  }
+}
 /* Contact Us Section */
 
 #contact {
@@ -348,7 +515,7 @@ button[type="submit"]:hover {
 
 /* Footer Styling */
 footer {
-  background-color: #333;
+  background-color: #FF968A;
   color: #fff;
   padding: 40px 0;
   text-align: center;
@@ -389,7 +556,7 @@ footer {
 
 .footer-bottom {
   padding-top: 20px;
-  border-top: 1px solid #777;
+  border-top: 1px solid #FFF;
   margin-top: 20px;
   font-size: 14px;
 }
