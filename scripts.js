@@ -114,7 +114,11 @@ function showSlides(slidesContainer) {
     displaySlides();
 }
 
-function sendEmail(event) {
+
+
+});
+
+function sendMail(event) {
   event.preventDefault(); // Prevent the form from submitting the traditional way
 
   // Collect form data
@@ -143,6 +147,3 @@ function sendEmail(event) {
       console.error('EmailJS Error:', error);
   });
 }
-
-
-});
