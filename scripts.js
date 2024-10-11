@@ -136,7 +136,7 @@ function sendEmail(event) {
   .then(function(response) {
       console.log('Email sent successfully!', response);
       alert('Message sent successfully!');
-      document.getElementById('contact-form').reset(); // Clear form after successful submission
+      // document.getElementById('contact-form').reset(); // Clear form after successful submission
   }, function(error) {
     console.error('Failed to send the email:', error);
       alert('Failed to send the message. Please try again later.');
