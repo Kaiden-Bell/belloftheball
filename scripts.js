@@ -114,4 +114,29 @@ function showSlides(slidesContainer) {
     displaySlides();
 }
 
+function sendEmail(event) {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
+
+  // Collect form data
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+
+  // Send form data using EmailJS
+  emailjs.send("F_zOes2IPaASxIYj2", "template_m85z8zl", {
+      from_name: email, // Input field for name
+      subject: subject,
+      message: message,
+      reply_to: email
+  })
+  .then(function(response) {
+      alert('Message sent successfully!');
+      document.getElementById('contact-form').reset(); // Clear form after successful submission
+  }, function(error) {
+      alert('Failed to send the message. Please try again later.');
+      console.error('EmailJS Error:', error);
+  });
+}
+
+
 });
