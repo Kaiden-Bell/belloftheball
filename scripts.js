@@ -97,25 +97,6 @@ async function loadImagesFromFolder(folderPath, containerId) {
     }
 }
 
-function showSlides(slidesContainer) {
-    const images = slidesContainer.getElementsByTagName('img');
-    let slideIndex = 0;
-
-    function displaySlides() {
-        for (let i = 0; i < images.length; i++) {
-            images[i].classList.remove('active');
-        }
-        slideIndex++;
-        if (slideIndex > images.length) { slideIndex = 1 }
-        images[slideIndex - 1].classList.add('active');
-        setTimeout(displaySlides, 2000); // Change image every 2 seconds
-    }
-
-    displaySlides();
-}
-
-
-
 });
 
 function sendMail(event) {

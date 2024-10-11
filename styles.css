@@ -265,7 +265,7 @@ body.scrolled::before {
 /* Rentals Section */
 .rentals {
   position: relative;
-  background: url('your-background-image.jpg') no-repeat center center/cover;
+  background: url('assets/BOTB-Logo.png') no-repeat center center/cover;
   padding: 50px 0;
   min-height: 100vh;
 }
@@ -351,8 +351,22 @@ body.scrolled::before {
 
 /* Portfolio Section */
 .portfolio-gallery {
+  position: relative;
   padding: 100px 20px 20px;
+  background: url('assets/BOTB-Logo.png') no-repeat center center/cover;
   background-color: #f4f4f4;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+.portfolio-gallery .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the opacity to your preference */
+  z-index: 1;
 }
 
 .portfolio-gallery img {
@@ -363,6 +377,8 @@ body.scrolled::before {
 }
 
 .gallery-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
@@ -375,6 +391,8 @@ body.scrolled::before {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  position: relative; /* Ensure each image sits within the overlay's bounds */
+  z-index: 2;
 }
 
 .gallery-item img:hover {
@@ -426,7 +444,6 @@ body.scrolled::before {
 
 /* Balloon Portfolio Section */
 
-/* Keep empty for now, no need to change anything */
 
 /* Contact Us Section */
 
