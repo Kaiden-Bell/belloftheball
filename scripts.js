@@ -123,7 +123,7 @@ function sendEmail(event) {
   const message = document.getElementById('message').value;
 
   // Send form data using EmailJS
-  emailjs.send("F_zOes2IPaASxIYj2", "template_m85z8zl", {
+  emailjs.send("service_1ebqtf3", "template_m85z8zl", {
       from_name: email, // Input field for name
       subject: subject,
       message: message,
