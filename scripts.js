@@ -122,6 +122,11 @@ function sendEmail(event) {
   const subject = document.getElementById("subject").value;
   const message = document.getElementById("message").value;
 
+    console.log("Email:", email);
+    console.log("Subject:", subject);
+    console.log("Message:", message);
+
+
   // Send form data using EmailJS
   emailjs.send("service_1ebqtf3", "template_m85z8zl", {
       from_name: email, // Input field for name
@@ -129,9 +134,11 @@ function sendEmail(event) {
       message: message,
   })
   .then(function(response) {
+      console.log('Email sent successfully!', response);
       alert('Message sent successfully!');
       document.getElementById('contact-form').reset(); // Clear form after successful submission
   }, function(error) {
+    console.error('Failed to send the email:', error);
       alert('Failed to send the message. Please try again later.');
       console.error('EmailJS Error:', error);
   });
