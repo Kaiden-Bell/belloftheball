@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // TypeWriter
   const businessName = "BELL OF THE BALL";
   let i = 0;
-  const typingSpeed = 52;
+  const typingSpeed = 25;
 
   function typeWriter() {
     if (i < businessName.length) {
@@ -113,7 +113,7 @@ function sendMail(event) {
 
 
   // Send form data using EmailJS
-  emailjs.send("service_1ebqtf3", "template_m85z8zl", {
+  emailjs.send("service_zvawbrp", "template_elslr7g", {
       from_name: email, // Input field for name
       subject: subject,
       message: message,
