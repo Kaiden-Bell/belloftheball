@@ -1,0 +1,13 @@
+{
+  "title": "Meadowood Mall Seasonal Installations",
+  "description": "Recurring seasonal work against the same branded step-and-repeat: an evergreen and red Christmas arch, a candy-cane and snowman variant, and a Halloween build in orange, purple, and black with ghosts worked into the garland.",
+  "order": 30,
+  "shape": 10,
+  "cover": "retail-christmas-arch.jpg",
+  "alt": {
+    "retail-christmas-arch.jpg": "A green, red, and white Christmas balloon arch with stars framing a branded step-and-repeat backdrop in a shopping mall",
+    "retail-candycane-arch.jpg": "A red and white candy-cane balloon garland with peppermint accents and a snowman beside a branded backdrop",
+    "retail-halloween-arch.jpg": "An orange, purple, and black Halloween balloon arch with ghost and pumpkin accents framing a branded backdrop",
+    "retail-halloween-step-and-repeat.jpg": "An orange, black, and chrome Halloween balloon garland with starbursts framing a branded step-and-repeat in a shopping mall"
+  }
+}

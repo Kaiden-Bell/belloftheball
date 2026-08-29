@@ -1,0 +1,15 @@
+{
+  "title": "Grand Openings & Brand Events",
+  "description": "Storefront and in-store work: an orange, white, and black entry arch with star bursts for a shop opening, a purple and black Nightmare Before Christmas build for a specialty retailer, and a navy, chrome, and white winter hoop set inside a boutique for the holiday season.",
+  "order": 50,
+  "shape": 12,
+  "cover": "grand-opening-orange-arch.jpg",
+  "alt": {
+    "grand-opening-orange-arch.jpg": "An orange and white balloon arch with copper starburst accents framing the entrance of a real-estate storefront under a red awning",
+    "recipe-box-nightmare-backdrop.jpg": "A purple, black, and white Nightmare Before Christmas themed balloon display around a branded sign",
+    "/photos/featured/winter-snowflake-arch.jpg": "A navy, chrome, and white balloon hoop arch with a large snowflake and starburst accents, set on parquet flooring inside a boutique"
+  },
+  "include": [
+    "/photos/featured/winter-snowflake-arch.jpg"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Rustic Stone Venue",
+  "description": "Wood-slice centerpieces, sage linen, and rattan chargers against an interior stone wall. Wildflowers in clear bottles keep each table low and open so guests can see across them. The rest of the venue is worked the same way — a circular moon-gate arch with sheer draping over the sweetheart table, a guest book and card station under blush foil balloons, dessert set along the stone ledge, and paper florals fixed to the old fireplace grate.",
+  "order": 20,
+  "shape": 7,
+  "cover": "/photos/featured/mr-and-mrs-tablescape.jpg",
+  "include": [
+    "/photos/about/wildflower-centerpiece.jpg"
+  ],
+  "alt": {
+    "/photos/featured/mr-and-mrs-tablescape.jpg": "A rustic wedding place setting with a wood charger, sage tablecloth, and a gold Mr. and Mrs. sign against a stone wall",
+    "/photos/about/wildflower-centerpiece.jpg": "Wildflowers in glass bottles on a wood-slice centerpiece, table number three",
+    "moon-gate-arch-sage-drape.jpg": "A circular wooden moon-gate arch with sheer draping behind a sweetheart table in sage and white, against a stone wall",
+    "sage-runner-rattan-chargers.jpg": "A guest table with a sage runner, rattan placemats, wood chargers, and a wooden table number two",
+    "guest-book-table-stone-wall.jpg": "A guest book and cards table with blush and rose gold balloons against a stone wall",
+    "dessert-table-stone-wall.jpg": "Desserts on wood-slice risers with blush and cream florals along a stone ledge",
+    "stone-fireplace-florals.jpg": "Oversized paper flowers fixed to the grate of an old stone fireplace with a name sign"
+  }
+}

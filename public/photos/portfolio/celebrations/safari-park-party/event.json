@@ -1,0 +1,9 @@
+{
+  "title": "Safari Park Party",
+  "description": "An outdoor build at a neighborhood park — giraffe-print and green balloons over a safari backdrop, with oversized animal figures and lettered blocks staged on the paving.",
+  "order": 20,
+  "shape": 13,
+  "alt": {
+    "safari-park-backdrop.jpg": "A green, orange, and giraffe-print balloon arch over a safari backdrop with animal figures at an outdoor park"
+  }
+}

@@ -1,0 +1,201 @@
+---
+import {
+  CONTACT_EMAIL,
+  FORM_ACCESS_KEY,
+  FORM_ENDPOINT,
+  FORM_FIELDS,
+  FORM_IS_CONFIGURED,
+  FORM_SUBJECT,
+} from '../data/site';
+import { EVENT_TYPES } from '../data/pricing';
+
+const is_dev = import.meta.env.DEV;
+---
+
+{is_dev && !FORM_IS_CONFIGURED && (
+  <p class="placeholder-banner">
+    TODO(client) — the form has no endpoint yet, so it renders disabled. Sign up at formspree.io (or
+    web3forms.com) with the site's email, then paste the endpoint into FORM_ENDPOINT in src/data/site.ts.
+    This banner is dev-only and will not appear in a production build.
+  </p>
+)}
+
+<form
+  class="cf-form"
+  method="POST"
+  action={FORM_IS_CONFIGURED ? FORM_ENDPOINT : undefined}
+  data-configured={FORM_IS_CONFIGURED ? 'true' : 'false'}
+  novalidate
+>
+  {FORM_ACCESS_KEY && <input type="hidden" name="access_key" value={FORM_ACCESS_KEY} />}
+  <input type="hidden" name={FORM_FIELDS.subject} value={FORM_SUBJECT} />
+
+  <!-- Honeypot. The field NAME comes from FORM_FIELDS because the two services
+       look for different ones, and that name is what lets the service catch a
+       bot on the no-JavaScript path. -->
+  <div class="cf-trap" aria-hidden="true">
+    <label for="cf-company">Company</label>
+    <input id="cf-company" type="text" name={FORM_FIELDS.honeypot} tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="cf-row">
+    <div class="cf-field">
+      <label class="label-text" for="cf-name">Name<span class="cf-req" aria-hidden="true">*</span></label>
+      <input id="cf-name" name="name" type="text" autocomplete="name" required aria-describedby="cf-name-error" />
+      <p class="cf-error" id="cf-name-error" data-error-for="cf-name" hidden>Please tell us your name.</p>
+    </div>
+
+    <div class="cf-field">
+      <label class="label-text" for="cf-email">Email<span class="cf-req" aria-hidden="true">*</span></label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" required aria-describedby="cf-email-error" />
+      <p class="cf-error" id="cf-email-error" data-error-for="cf-email" hidden>Please enter an email we can reply to.</p>
+    </div>
+  </div>
+
+  <div class="cf-row">
+    <div class="cf-field">
+      <label class="label-text" for="cf-phone">Phone <span class="cf-optional">(optional)</span></label>
+      <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+    </div>
+
+    <div class="cf-field">
+      <label class="label-text" for="cf-date">Event date <span class="cf-optional">(or roughly when)</span></label>
+      <input id="cf-date" name="event_date" type="text" placeholder="June 2026, or not sure yet" />
+    </div>
+  </div>
+
+  <div class="cf-field">
+    <label class="label-text" for="cf-type">What are you planning?</label>
+    <div class="cf-select-wrap">
+      <select id="cf-type" name="event_type">
+        <option value="">Choose an event type</option>
+        {EVENT_TYPES.map((t) => <option value={t.name}>{t.name}</option>)}
+        <option value="Something else">Something else</option>
+      </select>
+      <span class="cf-caret" aria-hidden="true">+</span>
+    </div>
+  </div>
+
+  <div class="cf-field">
+    <label class="label-text" for="cf-message">
+      Tell us about it<span class="cf-req" aria-hidden="true">*</span>
+    </label>
+    <textarea
+      id="cf-message"
+      name="message"
+      rows="6"
+      required
+      aria-describedby="cf-message-error"
+      placeholder="Guest count, venue, the look you're after — whatever you have so far."
+    ></textarea>
+    <p class="cf-error" id="cf-message-error" data-error-for="cf-message" hidden>Please add a few details about your event.</p>
+  </div>
+
+  <div class="cf-actions">
+    <button type="submit" class="cta-btn" disabled={!FORM_IS_CONFIGURED}>
+      {FORM_IS_CONFIGURED ? 'Send Request' : 'Form Not Connected Yet'}
+    </button>
+    <p class="cf-note" role="status" data-form-status>
+      {FORM_IS_CONFIGURED ? (
+        <Fragment>We reply to every request, usually within two business days.</Fragment>
+      ) : (
+        <Fragment>
+          The form isn't connected yet — email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and
+          we'll pick it up from there.
+        </Fragment>
+      )}
+    </p>
+  </div>
+</form>
+
+<div class="cf-success" data-form-success hidden>
+  <p class="label-text">REQUEST SENT</p>
+  <h2>Thank you — we have it.</h2>
+  <p>
+    We'll be in touch at the email you gave us, usually within two business days. If it's urgent, reach us
+    directly at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+  </p>
+</div>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.cf-form');
+  const success = document.querySelector<HTMLElement>('[data-form-success]');
+  const status = document.querySelector<HTMLElement>('[data-form-status]');
+
+  if (form && form.dataset.configured === 'true') {
+    const fields_with_errors = ['cf-name', 'cf-email', 'cf-message'];
+
+    const show_error = (id: string, show: boolean) => {
+      const field = document.getElementById(id);
+      const error = document.querySelector<HTMLElement>(`[data-error-for="${id}"]`);
+      field?.classList.toggle('is-invalid', show);
+      field?.setAttribute('aria-invalid', show ? 'true' : 'false');
+      // aria-describedby stays pointed at the message; hiding the element is
+      // what removes it from the accessibility tree.
+      if (error) error.hidden = !show;
+    };
+
+    fields_with_errors.forEach((id) => {
+      document.getElementById(id)?.addEventListener('input', () => show_error(id, false));
+    });
+
+    const validate = () => {
+      let first_bad: string | null = null;
+      fields_with_errors.forEach((id) => {
+        const field = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null;
+        if (!field) return;
+        const bad = !field.value.trim() || (field instanceof HTMLInputElement && !field.checkValidity());
+        show_error(id, bad);
+        if (bad && !first_bad) first_bad = id;
+      });
+      if (first_bad) document.getElementById(first_bad)?.focus();
+      return first_bad === null;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!validate()) return;
+
+      // A bot filled the hidden field, so pretend all is well.
+      const trap = form.querySelector<HTMLInputElement>('#cf-company');
+      if (trap?.value) {
+        form.hidden = true;
+        if (success) success.hidden = false;
+        return;
+      }
+
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const label = button?.textContent;
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Sending…';
+      }
+      if (status) status.textContent = '';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+        form.hidden = true;
+        if (success) {
+          success.hidden = false;
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch {
+        if (button) {
+          button.disabled = false;
+          button.textContent = label ?? 'Send Request';
+        }
+        if (status) {
+          status.classList.add('is-error');
+          status.textContent =
+            "That didn't send — please try again, or email us directly and we'll pick it up from there.";
+        }
+      }
+    });
+  }
+</script>

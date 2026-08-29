@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+---
+
+<Layout title="Services | Bell of the Ball" description="Event design and planning, professional officiating, organic balloon arrangements, and party concession rentals — one partner for every layer of your event.">
+  <section class="hero" style="min-height: 60vh;">
+    <div class="hero-content">
+      <span class="section-label reveal">WHAT WE DO</span>
+      <h1 class="reveal" style="font-family: var(--font-display); font-size: clamp(3rem, 8vw, 8rem); line-height: 0.95; margin: 1rem 0 2rem; color: var(--color-warm-ink);">
+        Five Services,<br />One Partner
+      </h1>
+      <p class="hero-tagline reveal" style="max-width: 500px;">
+        Comprehensive logistics meet unbridled creativity. Every layer of your event — design, ceremony, paperwork,
+        décor, and equipment — handled by the same team from first sketch to final toast.
+      </p>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="services-container">
+      <h2 class="section-label reveal">Our Services</h2>
+
+      <div class="service-item service-design reveal">
+        <div class="service-text">
+          <span class="service-num">01</span>
+          <h3>Event Design & Planning</h3>
+          <p>
+            A holistic approach to celebration. We sculpt space, light, and texture to reflect your unique narrative.
+            Comprehensive logistics meet unbridled creativity in our full-service planning — from the first concept
+            sketch through day-of coordination.
+          </p>
+        </div>
+        <img
+          class="service-media shape-4"
+          src="/photos/services/event-design-bridal-table.jpg"
+          alt="A long wooden bridal table dressed with a navy and blue floral garland runner, candles, and gold-rimmed place settings"
+        />
+      </div>
+
+      <div class="service-item service-officiating reveal">
+        <img
+          class="service-media shape-5"
+          src="/photos/services/officiating-ceremony-arch.jpg"
+          alt="A wooden circular ceremony arch with sheer draping and oversized poppy flowers, set against a stone building and pine forest"
+        />
+        <div class="service-text">
+          <span class="service-num">02</span>
+          <h3>Professional Officiating</h3>
+          <p>
+            Crafting ceremonies with profound resonance. Our professional officiating services blend tradition with
+            modern intimacy, anchoring your milestone in authentic, heartfelt storytelling — written and delivered
+            around your story, not a script off the shelf.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-item service-notary reveal">
+        <div class="service-text">
+          <span class="service-num">03</span>
+          <h3>Notary Services</h3>
+        </div>
+        <div class="service-text">
+          <p>
+            A commissioned notary on the same team that plans your event. Affidavits, consent forms, and the
+            paperwork that tends to surface the week of — notarized without sending you to find a third party at
+            short notice.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-item service-balloons reveal">
+        <div class="service-text">
+          <span class="service-num">04</span>
+          <h3>Organic Balloon Arrangements</h3>
+          <p>
+            Defying gravity and expectation. We weave kinetic, botanical-inspired balloon installations that climb
+            architecture and cascade through spaces in breathtaking asymmetry — arches, garlands, and columns built
+            to match your event's own palette.
+          </p>
+        </div>
+        <img
+          class="service-media shape-6"
+          src="/photos/services/balloons-purple-wisteria.jpg"
+          alt="A purple and lavender organic balloon garland with wisteria accents arcing over a wooden cross at a stone-walled venue"
+        />
+      </div>
+
+      <div class="service-item service-rentals reveal">
+        <div class="rental-background"></div>
+        <div class="service-text centered-text">
+          <span class="service-num">05</span>
+          <h3>Party Concession Rentals</h3>
+          <p>Curated amusements for the discerning host. Concession equipment delivered and set up to match your event's own palette and pace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="cta-container reveal">
+      <h2 class="cta-title">Ready to<br />Begin?</h2>
+      <CTAButton href="/contact" variant="secondary">Book Consultation</CTAButton>
+    </div>
+  </section>
+</Layout>

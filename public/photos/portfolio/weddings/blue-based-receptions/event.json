@@ -1,0 +1,21 @@
+{
+  "title": "Blue-Based Receptions",
+  "description": "Navy and dusty-blue florals run the length of raw wood farm tables, with floating candles, gold-rimmed glassware, and a matching dessert and favor spread. The same palette scales up to the room — a draped ballroom in white and blue, a head table run with eucalyptus and pillar candles, and guest tables finished with navy overlays and satin chair sashes.",
+  "order": 10,
+  "shape": 4,
+  "cover": "/photos/services/event-design-bridal-table.jpg",
+  "include": [
+    "/photos/about/sweetheart-table-detail.jpg",
+    "/photos/portfolio/rentals-and-products/formal-place-settings/royal-blue-runner-gold-chargers.jpg"
+  ],
+  "alt": {
+    "/photos/services/event-design-bridal-table.jpg": "A long wooden bridal table dressed with a navy and blue floral garland runner, candles, and gold-rimmed place settings",
+    "/photos/about/sweetheart-table-detail.jpg": "A sweetheart table with floating candles, blue and white florals, and a wooden Mr. and Mrs. sign",
+    "blue-wedding-dessert-table.jpg": "A tiered white wedding cake on a dessert table with navy ribbon, greenery garland, and trays of fruit and pastries",
+    "blue-wedding-favor-table.jpg": "A favor table lined with navy and burlap gift bags, candles, and a framed sign",
+    "navy-head-table-eucalyptus.jpg": "A head table with a navy overlay, eucalyptus garland, pillar candles, and framed signs in a draped ballroom",
+    "navy-banquet-blue-chair-sashes.jpg": "A round banquet table with a navy overlay, folded napkins, and white chair covers tied with royal blue satin sashes",
+    "draped-ballroom-wide.jpg": "A ballroom set for a seated reception with white ceiling drapery and round tables in white and blue linen",
+    "/photos/portfolio/rentals-and-products/formal-place-settings/royal-blue-runner-gold-chargers.jpg": "A long table with a royal blue satin runner, gold charger plates, blue napkins, and eucalyptus down the centre"
+  }
+}

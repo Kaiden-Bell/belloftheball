@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@import "./components.css";
+
+/*
+ * Botanical Ledger — keep in sync with /DESIGN.md.
+ *
+ * ochre-rust and warm-taupe are measured values, not chosen ones: at #a8672a
+ * and #7a6748 they were 3.65:1 and 4.38:1 on parchment, under the 4.5:1 needed
+ * for small text. Darkening them changes nothing visible but ochre carries
+ * every label and button, so lightening either one again breaks WCAG AA.
+ */
+@theme {
+  --color-bottle-green: #1f3d2e;
+  --color-ochre-rust: #945a25;
+  --color-parchment: #efe6d3;
+  --color-paper-white: #faf6ec;
+  --color-warm-ink: #221d15;
+  --color-warm-taupe: #786547;
+
+  --font-display: "Libre Caslon Display", Georgia, serif;
+  --font-mono: "Fragment Mono", ui-monospace, monospace;
+  --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --ease-organic: cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-parchment);
+    color: var(--color-warm-ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--color-warm-ink);
+  }
+}
+
+/*
+ * Composed onto --rest-transform rather than setting `transform` outright: an
+ * element positioned by its own transform would otherwise lose that
+ * positioning, since the two rules carry equal specificity and the reveal is
+ * declared last. This was dropping the hero photograph half a viewport down.
+ */
+.reveal, .reveal-up, .reveal-right {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: all 1s var(--ease-organic);
+}
+.reveal { transform: var(--rest-transform, translate(0, 0)) translateY(30px); }
+.reveal-up { transform: var(--rest-transform, translate(0, 0)) translateY(60px); }
+.reveal-right { transform: var(--rest-transform, translate(0, 0)) translateX(40px); }
+.reveal.active, .reveal-up.active, .reveal-right.active {
+  opacity: 1;
+  transform: var(--rest-transform, translate(0, 0));
+}
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }

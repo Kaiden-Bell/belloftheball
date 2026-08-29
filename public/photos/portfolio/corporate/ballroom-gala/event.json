@@ -1,0 +1,14 @@
+{
+  "title": "Ballroom Gala",
+  "description": "Black, gold, and purple across a full ballroom — balloon centerpieces on every table, linen napkins tied at each cover, and a room set for a seated dinner.",
+  "order": 40,
+  "shape": 9,
+  "cover": "/photos/featured/gala-ballroom-tablescape.jpg",
+  "include": [
+    "/photos/about/gala-ballroom-guests.jpg"
+  ],
+  "alt": {
+    "/photos/featured/gala-ballroom-tablescape.jpg": "A black, gold, and purple place setting at a formal ballroom gala table",
+    "/photos/about/gala-ballroom-guests.jpg": "A ballroom filled with seated guests at a formal gala under a chandelier"
+  }
+}

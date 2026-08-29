@@ -1,0 +1,15 @@
+{
+  "title": "Formal Place Settings",
+  "description": "Rental stock dressed for a formal seated dinner — gold-scroll chargers, navy napkins, gold flatware, and a royal blue runner. The same stock takes a softer setting just as well: blush napkins, gold flatware, and full glassware laid out on a round table for a seated service.",
+  "order": 20,
+  "shape": 18,
+  "cover": "royal-blue-runner-gold-chargers.jpg",
+  "include": [
+    "/photos/about/rental-charger-detail.jpg"
+  ],
+  "alt": {
+    "/photos/about/rental-charger-detail.jpg": "Gold-scroll charger plate with a navy napkin and gold flatware, place setting detail",
+    "royal-blue-runner-gold-chargers.jpg": "A long table with a royal blue satin runner, gold charger plates, blue napkins, and eucalyptus down the centre",
+    "blush-and-gold-round-table.jpg": "A round table laid for a seated dinner with blush napkins, gold flatware, printed menus, and full glassware at every cover"
+  }
+}

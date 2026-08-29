@@ -1,0 +1,337 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import TestimonialColumns from '../components/TestimonialColumns.astro';
+import { load_rentals } from '../data/rentals';
+import { load_portfolio } from '../data/portfolio';
+
+const rentals = load_rentals();
+const { events } = load_portfolio();
+
+// The hero, about and services photographs are the same files the event
+// folders name as covers or includes, so the lightbox can open the whole event
+// a photograph belongs to instead of showing it alone. Nothing here needs
+// editing when a photo moves between events — the index follows event.json.
+const owner_of = new Map<string, (typeof events)[number]>();
+for (const event of events) {
+  for (const photo of [event.cover, ...event.photos]) {
+    if (!owner_of.has(photo.src)) owner_of.set(photo.src, event);
+  }
+}
+
+function open_set(src: string, alt: string, title: string, meta: string) {
+  const event = owner_of.get(src);
+  if (!event) return JSON.stringify({ title, meta, photos: [{ src, alt }] });
+  return JSON.stringify({
+    title: event.title,
+    meta: event.category.toUpperCase(),
+    description: event.description,
+    href: `/portfolio#${event.slug}`,
+    href_label: 'Open in the archive',
+    photos: [event.cover, ...event.photos],
+  });
+}
+
+// Edit the slugs to change what is featured; edit that event's event.json to
+// change its photograph or caption.
+const FEATURED_SLUGS = [
+  'rustic-stone-wedding',
+  'seasonal-retail',
+  'jungle-baby-shower',
+  'ballroom-gala',
+];
+
+const featured = FEATURED_SLUGS.map((slug) => events.find((e) => e.slug === slug)).filter(
+  (event): event is (typeof events)[number] => Boolean(event)
+);
+---
+
+<Layout title="Bell of the Ball | Premium Event Design">
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title parallax-text" data-speed="0.05">BELL OF<br />THE BALL</h1>
+      <p class="hero-tagline reveal">
+        PREMIUM EVENT DESIGN &amp; FULL-SERVICE PLANNING<br />
+        <span class="hero-locale">LOCAL TO RENO, NEVADA — SERVING RENO, SPARKS &amp; CARSON CITY</span>
+      </p>
+      <CTAButton href="/contact" class="reveal">Book Consultation</CTAButton>
+    </div>
+    <div class="hero-media-wrapper reveal-right">
+      <button
+        type="button"
+        class="px-open hero-media"
+        data-lightbox={open_set(
+          '/photos/hero/church-garland-arch.jpg',
+          'A sage-green, gold, and white organic balloon garland arcing over a wooden cross at a stone-walled venue',
+          'Ceremony Arches',
+          'WEDDINGS'
+        )}
+        data-lightbox-start="/photos/hero/church-garland-arch.jpg"
+      >
+        <span class="px-frame shape-1" data-parallax="0.55">
+          <img
+            src="/photos/hero/church-garland-arch.jpg"
+            alt="A sage-green, gold, and white organic balloon garland arcing over a wooden cross at a stone-walled venue"
+          />
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-container">
+      <span class="section-label reveal">01. HERITAGE &amp; SCOPE</span>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="reveal">Elevating the Art of Celebration</h2>
+          <p class="reveal">
+            We orchestrate bespoke experiences where crisp editorial lines merge with fluid, organic structures. From
+            the initial spark of inspiration to the final toast, our cohesive team handles every detail—ensuring your
+            vision is brought to life with uncompromising artistry and deep personalization.
+          </p>
+          <p class="reveal">
+            There is no disconnect between design and execution; we are the single breath of creativity that carries
+            your event from concept to reality.
+          </p>
+          <CTAButton href="/about" variant="secondary" class="reveal">Our Story</CTAButton>
+        </div>
+        <div class="about-media-blocks">
+          <button
+            type="button"
+            class="px-open media-block block-left reveal-up"
+            data-lightbox={open_set(
+              '/photos/about/wildflower-centerpiece.jpg',
+              'Wildflowers in glass bottles on a wood-slice centerpiece, table number three',
+              'Rustic Stone Venue',
+              'WEDDINGS'
+            )}
+            data-lightbox-start="/photos/about/wildflower-centerpiece.jpg"
+          >
+            <span class="px-frame shape-2" data-parallax="1.1">
+              <img
+                src="/photos/about/wildflower-centerpiece.jpg"
+                alt="Wildflowers in glass bottles on a wood-slice centerpiece, table number three"
+              />
+            </span>
+          </button>
+          <button
+            type="button"
+            class="px-open media-block block-right reveal-up delay-1"
+            data-lightbox={open_set(
+              '/photos/about/rental-charger-detail.jpg',
+              'Gold-scroll charger plate with a navy napkin and gold flatware, place setting detail',
+              'Formal Place Settings',
+              'RENTALS & PRODUCTS'
+            )}
+            data-lightbox-start="/photos/about/rental-charger-detail.jpg"
+          >
+            <span class="px-frame shape-3" data-parallax="0.7">
+              <img
+                src="/photos/about/rental-charger-detail.jpg"
+                alt="Gold-scroll charger plate with a navy napkin and gold flatware, place setting detail"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="services-container">
+      <span class="section-label reveal">02. OUR SERVICES</span>
+
+      <div class="service-item service-design reveal">
+        <div class="service-text">
+          <span class="service-num">01</span>
+          <h3>Event Design &amp; Planning</h3>
+          <p>
+            A holistic approach to celebration. We sculpt space, light, and texture to reflect your unique narrative.
+            Comprehensive logistics meet unbridled creativity in our full-service planning.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="px-open service-media"
+          data-lightbox={open_set(
+            '/photos/services/event-design-bridal-table.jpg',
+            'A long wooden bridal table dressed with a navy and blue floral garland runner, candles, and gold-rimmed place settings',
+            'Blue-Based Receptions',
+            'WEDDINGS'
+          )}
+          data-lightbox-start="/photos/services/event-design-bridal-table.jpg"
+        >
+          <span class="px-frame shape-4" data-parallax="0.8">
+            <img
+              src="/photos/services/event-design-bridal-table.jpg"
+              alt="A long wooden bridal table dressed with a navy and blue floral garland runner, candles, and gold-rimmed place settings"
+            />
+          </span>
+        </button>
+      </div>
+
+      <div class="service-item service-officiating reveal">
+        <button
+          type="button"
+          class="px-open service-media"
+          data-lightbox={open_set(
+            '/photos/services/officiating-ceremony-arch.jpg',
+            'A wooden circular ceremony arch with sheer draping and oversized poppy flowers, set against a stone building and pine forest',
+            'Ceremony Arches',
+            'WEDDINGS'
+          )}
+          data-lightbox-start="/photos/services/officiating-ceremony-arch.jpg"
+        >
+          <span class="px-frame shape-5" data-parallax="0.8">
+            <img
+              src="/photos/services/officiating-ceremony-arch.jpg"
+              alt="A wooden circular ceremony arch with sheer draping and oversized poppy flowers, set against a stone building and pine forest"
+            />
+          </span>
+        </button>
+        <div class="service-text">
+          <span class="service-num">02</span>
+          <h3>Professional Officiating</h3>
+          <p>
+            Crafting ceremonies with profound resonance. Our professional officiating services blend tradition with
+            modern intimacy, anchoring your milestone in authentic, heartfelt storytelling.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-item service-notary reveal">
+        <div class="service-text">
+          <span class="service-num">03</span>
+          <h3>Notary Services</h3>
+        </div>
+        <div class="service-text">
+          <p>
+            A commissioned notary on the same team that plans your event. Affidavits, consent forms, and the
+            paperwork that tends to surface the week of — notarized without sending you to find a third party at
+            short notice.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-item service-balloons reveal">
+        <div class="service-text">
+          <span class="service-num">04</span>
+          <h3>Organic Balloon Arrangements</h3>
+          <p>
+            Defying gravity and expectation. We weave kinetic, botanical-inspired balloon installations that climb
+            architecture and cascade through spaces in breathtaking asymmetry.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="px-open service-media"
+          data-lightbox={open_set(
+            '/photos/services/balloons-purple-wisteria.jpg',
+            'A purple and lavender organic balloon garland with wisteria accents arcing over a wooden cross at a stone-walled venue',
+            'Ceremony Arches',
+            'WEDDINGS'
+          )}
+          data-lightbox-start="/photos/services/balloons-purple-wisteria.jpg"
+        >
+          <span class="px-frame shape-6" data-parallax="0.9">
+            <img
+              src="/photos/services/balloons-purple-wisteria.jpg"
+              alt="A purple and lavender organic balloon garland with wisteria accents arcing over a wooden cross at a stone-walled venue"
+            />
+          </span>
+        </button>
+      </div>
+
+      <div class="service-item service-rentals reveal">
+        <div class="rental-background"></div>
+        <div class="service-text centered-text">
+          <span class="service-num">05</span>
+          <h3>Party Concession Rentals</h3>
+          <p>Curated amusements for the discerning host. Concession equipment delivered and set up to match your event's own palette and pace.</p>
+        </div>
+      </div>
+
+      {rentals.length > 0 && (
+        <ul class="rental-strip reveal">
+          {rentals.map((machine) => (
+            <li class="rental-card">
+              <button
+                type="button"
+                class="px-open"
+                data-lightbox={JSON.stringify({
+                  title: machine.name,
+                  meta: 'CONCESSION RENTALS',
+                  href: '/services',
+                  href_label: 'See what comes with it',
+                  photos: [{ src: machine.src, alt: machine.alt }],
+                })}
+              >
+                <span class="px-frame" data-parallax="0.5">
+                  <img src={machine.src} alt={machine.alt} loading="lazy" />
+                </span>
+              </button>
+              <span class="label-text rental-name">{machine.name}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio-container">
+      <span class="section-label reveal">03. ARCHIVE</span>
+      <h2 class="portfolio-title reveal">Selected Works</h2>
+      <p class="portfolio-lead reveal">
+        Four events out of the archive. Open one and you get the whole set — every photograph from that build, in
+        order, without leaving this page.
+      </p>
+      <div class="portfolio-grid">
+        {featured.map((event, i) => (
+          <div class={`portfolio-item p-item-${i + 1} reveal-up${i === 1 ? ' delay-1' : ''}${i === 2 ? ' delay-2' : ''}${i === 3 ? ' delay-1' : ''}`}>
+            <button
+              type="button"
+              class="px-open p-media"
+              data-lightbox={JSON.stringify({
+                title: event.title,
+                meta: event.category.toUpperCase(),
+                description: event.description,
+                href: `/portfolio#${event.slug}`,
+                href_label: 'Open in the archive',
+                photos: [event.cover, ...event.photos],
+              })}
+            >
+              <span class={`px-frame shape-${7 + i}`} data-parallax={[0.9, 1.25, 0.7, 1.05][i]}>
+                <img src={event.cover.src} alt={event.cover.alt} loading="lazy" />
+              </span>
+            </button>
+            <span class="p-caption">
+              {event.title.toUpperCase()}
+              <span class="p-count">
+                {event.photos.length + 1} photographs
+                <span class="p-open" aria-hidden="true">Open ↗</span>
+              </span>
+            </span>
+          </div>
+        ))}
+      </div>
+      <div class="mt-24 text-center">
+        <CTAButton href="/portfolio" variant="secondary">View Full Archive</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialColumns />
+
+  <section class="final-cta" id="contact">
+    <div class="cta-container reveal">
+      <h2 class="cta-title">Your Vision,<br />Our Craft</h2>
+      <CTAButton href="/contact" variant="secondary">Book Consultation</CTAButton>
+    </div>
+  </section>
+
+  <button type="button" class="to-top" data-to-top hidden aria-label="Back to top">
+    <span aria-hidden="true">↑</span>
+    <span class="to-top-label">TOP</span>
+  </button>
+</Layout>

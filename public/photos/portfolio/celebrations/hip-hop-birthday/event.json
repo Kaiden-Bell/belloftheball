@@ -1,0 +1,10 @@
+{
+  "title": "Hip-Hop Birthday",
+  "description": "A retro hip-hop build in primary red, blue, and yellow with black accents. A printed backdrop with a boombox and gold chain sits over a gold sequin skirt, flanked by balloon columns and starbursts; the same palette runs out into the room, with an oversized gold chain garland swagged along the balcony rail.",
+  "order": 70,
+  "cover": "retro-birthday-backdrop.jpg",
+  "alt": {
+    "retro-birthday-backdrop.jpg": "A retro hip-hop birthday backdrop with a boombox and gold chain graphic over a gold sequin skirt, framed by red, blue, and yellow balloon columns",
+    "primary-garland-and-gold-chain.jpg": "Red, blue, and yellow balloon columns in a two-storey entryway with an oversized gold chain garland swagged along the balcony rail"
+  }
+}

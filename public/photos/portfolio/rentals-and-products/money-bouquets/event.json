@@ -1,0 +1,11 @@
+{
+  "title": "Money Bouquets",
+  "description": "Folded-bill bouquets built to order — a blush and rose-gold arrangement with butterfly accents, and a black-rose version with feathers. Priced at the bouquet plus whatever is folded into it.",
+  "order": 10,
+  "shape": 17,
+  "cover": "/photos/contact/celebration-bouquet.jpg",
+  "alt": {
+    "/photos/contact/celebration-bouquet.jpg": "A hand-tied celebration bouquet styled with paper roses and gold butterfly accents",
+    "money-bouquet-black-roses.jpg": "A money bouquet of folded bills with black roses, gold butterflies, and black feather accents"
+  }
+}

@@ -1,0 +1,137 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  og_image?: string;
+}
+
+const {
+  title,
+  description = "We Love To Party. Premium event design & full-service party planning in Reno, Sparks, and Carson City, by Bell of the Ball.",
+  og_image = '/photos/hero/church-garland-arch.jpg',
+} = Astro.props;
+
+const canonical_og_image = new URL(og_image, Astro.site ?? Astro.url).toString();
+
+const nav_items = [
+  {
+    href: '/about',
+    label: 'ABOUT',
+    blurb: 'One partner for the whole event, and the two people who run it.',
+  },
+  {
+    href: '/services',
+    label: 'SERVICES',
+    blurb:
+      'Event design and planning, officiating, notary, organic balloons, and concession rentals.',
+  },
+  {
+    href: '/portfolio',
+    label: 'PORTFOLIO',
+    blurb: 'Weddings, corporate productions, celebrations, and rentals we have built.',
+  },
+  {
+    href: '/pricing',
+    label: 'PRICING & FAQS',
+    blurb:
+      'Build an estimate in seconds, then read the answers to everything people ask before booking.',
+  },
+  {
+    href: '/contact',
+    label: 'CONTACT',
+    blurb: 'Book the consultation. That conversation is where every event starts.',
+  },
+];
+
+const team = [
+  { name: 'Christa Bell', role: 'FOUNDER' },
+  { name: 'Kevin Bell', role: 'CO-FOUNDER' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={canonical_og_image} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Libre+Caslon+Display&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="sidebar-nav" aria-label="Primary">
+      <div class="nav-item nav-item-logo">
+        <a href="/" class="logo" aria-label="Bell of the Ball — home">BOTB</a>
+        <div class="nav-flyout nav-flyout-brand" role="presentation">
+          <img class="nav-flyout-mark" src="/favicon.svg" alt="" width="44" height="44" />
+          <p class="nav-flyout-title">Bell of the Ball</p>
+          <p class="nav-flyout-body">
+            Full-service event planning and rentals — one point of contact from first concept
+            through final teardown.
+          </p>
+          <ul class="nav-flyout-team">
+            {team.map((person) => (
+              <li>
+                <span class="nav-flyout-name">{person.name}</span>
+                <span class="label-text">{person.role}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <ul class="nav-links">
+        {nav_items.map((item, i) => (
+          <li class="nav-item">
+            <a href={item.href} class="nav-link">
+              <span class="nav-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span class="nav-sr">{item.label}</span>
+            </a>
+            <div class="nav-flyout" role="presentation">
+              <span class="label-text">{String(i + 1).padStart(2, '0')}</span>
+              <p class="nav-flyout-title">{item.label}</p>
+              <p class="nav-flyout-body">{item.blurb}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="mobile-nav">
+      <a href="/" class="logo">BOTB</a>
+      <button class="menu-btn" id="mobile-menu-btn">MENU</button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-links">
+        {nav_items.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <main class="main-content" id="main" tabindex="-1">
+      <slot />
+      <Footer />
+    </main>
+
+    <script src="../scripts/site.js"></script>
+  </body>
+</html>

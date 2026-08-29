@@ -1,0 +1,101 @@
+---
+import { TESTIMONIALS, TESTIMONIALS_ARE_PLACEHOLDER } from '../data/testimonials';
+
+// Round-robin so the count needn't divide by three and neighbouring columns
+// never show consecutive quotes. Uneven durations keep the columns out of phase.
+const COLUMN_META = [
+  { duration: '46s', className: '' },
+  { duration: '58s', className: 'hidden md:block' },
+  { duration: '52s', className: 'hidden lg:block' },
+];
+
+const columns = COLUMN_META.map((meta, column_index) => ({
+  ...meta,
+  items: TESTIMONIALS.filter((_, i) => i % COLUMN_META.length === column_index),
+}));
+
+const FACETS = [13, 15, 17, 14, 16, 18];
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');
+
+const is_dev = import.meta.env.DEV;
+---
+
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-container">
+    <div class="testimonials-head">
+      <span class="section-label reveal">IN THEIR WORDS</span>
+      <h2 class="reveal">What Clients Say</h2>
+      <p class="reveal">
+        Every event here was someone's milestone. These are the people who trusted us with one.
+      </p>
+    </div>
+
+    {TESTIMONIALS_ARE_PLACEHOLDER && is_dev && (
+      <p class="placeholder-banner">
+        TODO(client) — placeholder testimonials. Replace src/data/testimonials.ts with the confirmed quotes
+        before launch. This banner is dev-only and will not appear in a production build.
+      </p>
+    )}
+
+    <button type="button" class="tm-pause" data-tm-pause aria-pressed="false">
+      <span aria-hidden="true">❚❚</span>
+      <span data-tm-pause-label>Pause reviews</span>
+    </button>
+
+    <div class="tm-columns" data-tm-columns>
+      {columns.map((column, column_index) => (
+        <div class={`tm-column ${column.className}`}>
+          <div class="tm-track" style={`--tm-duration: ${column.duration};`}>
+            {[0, 1].map((pass) =>
+              column.items.map((t, i) => (
+                <figure
+                  class={`tm-card ledger-panel is-faceted shape-${FACETS[(i * COLUMN_META.length + column_index) % FACETS.length]}`}
+                  aria-hidden={pass === 1 ? 'true' : undefined}
+                >
+                  <blockquote class="tm-quote">{t.quote}</blockquote>
+                  <figcaption class="tm-attrib">
+                    {t.image ? (
+                      <img class="tm-avatar" src={t.image} alt="" width="44" height="44" loading="lazy" />
+                    ) : (
+                      <span class="tm-monogram" aria-hidden="true">{initials(t.name)}</span>
+                    )}
+                    <span>
+                      <span class="tm-name">{t.name}</span>
+                      <span class="label-text" style="display: block; margin-top: 0.15rem;">{t.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              ))
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const columns = document.querySelector<HTMLElement>('[data-tm-columns]');
+  const button = document.querySelector<HTMLButtonElement>('[data-tm-pause]');
+  const label = document.querySelector<HTMLElement>('[data-tm-pause-label]');
+
+  if (columns && button && label) {
+    // Reduced motion never had the animation, so the control would do nothing.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      button.hidden = true;
+    } else {
+      button.addEventListener('click', () => {
+        const paused = columns.classList.toggle('is-paused');
+        button.setAttribute('aria-pressed', String(paused));
+        label.textContent = paused ? 'Resume reviews' : 'Pause reviews';
+      });
+    }
+  }
+</script>

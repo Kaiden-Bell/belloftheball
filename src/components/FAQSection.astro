@@ -1,0 +1,87 @@
+---
+import CTAButton from './CTAButton.astro';
+import { FAQ_GROUPS, FAQ_ITEMS, FAQ_OPEN_COUNT } from '../data/faq';
+
+interface Props {
+  contact_href?: string;
+}
+
+const { contact_href = '/contact' } = Astro.props;
+
+// Cycled so no two adjacent cards share a silhouette.
+const FACETS = [13, 14, 15, 16, 17, 18];
+const is_dev = import.meta.env.DEV;
+
+// Unanswered questions are badged in dev but never ship, so a visitor can't
+// read "TODO(client): confirm the service area" as the answer.
+const items = is_dev ? FAQ_ITEMS : FAQ_ITEMS.filter((item) => item.status === 'confirmed');
+
+// Runs straight through all groups, so "question 12" means one thing.
+let counter = 0;
+const bands = FAQ_GROUPS.map((group) => ({
+  group,
+  entries: items
+    .filter((item) => item.group === group)
+    .map((item) => ({ item, index: counter++ })),
+})).filter((band) => band.entries.length > 0);
+---
+
+<section class="faq-section" id="faq">
+  <div class="faq-container">
+    <div class="faq-head">
+      <span class="section-label reveal">COMMON QUESTIONS</span>
+      <h2 class="reveal">Before You Ask</h2>
+      <p class="reveal">
+        Deposits, lead times, what the base price actually covers, and the things we cannot promise. These are
+        the answers we give on the phone, written down — so you can get to a decision without booking a call
+        first. Anything not covered here, ask us directly and we will answer it properly.
+      </p>
+    </div>
+
+    {is_dev && FAQ_OPEN_COUNT > 0 && (
+      <p class="faq-dev-note">
+        DEV ONLY — {FAQ_OPEN_COUNT} question{FAQ_OPEN_COUNT === 1 ? '' : 's'} below still need a client answer.
+        They are badged in place and are stripped from production builds. Answer them in src/data/faq.ts and
+        flip `status` to 'confirmed' to publish.
+      </p>
+    )}
+
+    {bands.map((band) => (
+      <div class="faq-band">
+        <h3 class="faq-band-title reveal">{band.group}</h3>
+
+        <div class="faq-grid">
+          {band.entries.map(({ item, index }) => (
+            <div
+              class={`faq-item shape-${FACETS[index % FACETS.length]} reveal${item.bullets ? ' faq-item-wide' : ''}${item.status === 'todo' ? ' faq-item-todo' : ''}`}
+            >
+              <span class="label-text faq-num">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                {item.status === 'todo' && is_dev && <span class="faq-todo">Needs client answer</span>}
+                <h4 class="faq-q">{item.question}</h4>
+                <p class="faq-a">{item.answer}</p>
+                {item.bullets && (
+                  <ul class="faq-list">
+                    {item.bullets.map((bullet) => <li>{bullet}</li>)}
+                  </ul>
+                )}
+                {item.outro && <p class="faq-a faq-outro">{item.outro}</p>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="faq-cta shape-17 reveal">
+      <span class="label-text faq-cta-label">Didn't find your answer?</span>
+      <h3 class="faq-cta-title">Ask us directly.</h3>
+      <p class="faq-cta-body">
+        No event is standard, and the ones worth doing rarely fit a page like this. If your question is not
+        above — an unusual venue, a tight timeline, a guest count you are unsure about — send it over. The
+        consultation is free, it is normally a phone call or a Zoom, and there is no obligation attached to it.
+      </p>
+      <CTAButton href={contact_href}>Ask Your Question</CTAButton>
+    </div>
+  </div>
+</section>

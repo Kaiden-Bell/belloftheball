@@ -1,0 +1,14 @@
+{
+  "title": "Roller Skate Birthday",
+  "description": "A neon roller-disco build in purple, magenta, and cyan under coloured wash lighting. Holographic plates and skate-print favour cards on the tables, a drip cake crowded with figurines and candles, and a food counter run with balloon clusters, piped treat bags, parfait cups, and chalkboard labels at each station.",
+  "order": 55,
+  "cover": "octopus-birthday-cake.jpg",
+  "alt": {
+    "octopus-birthday-cake.jpg": "A pastel drip birthday cake topped with candles and small figurines, on a gold stand against a purple wall",
+    "neon-party-table-balloons.jpg": "A children's party table under purple wash lighting with white, pink, and yellow balloon clusters and holographic plates",
+    "holographic-place-setting.jpg": "A holographic place setting with a printed roller skate favour card and a piped treat bag",
+    "neon-balloons-on-counter.jpg": "Purple and white balloon clusters above a counter set with foil favours and an Enjoy sign",
+    "piped-treat-bags-and-cupcakes.jpg": "Piped white treat bags tied with pink ribbon beside cupcakes and a plush monkey on a dark counter",
+    "pink-octopus-plush.jpg": "A large pink crocheted octopus plush on a counter beside pastel balloons and a party sign"
+  }
+}

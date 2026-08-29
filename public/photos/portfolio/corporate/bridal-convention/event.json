@@ -1,0 +1,10 @@
+{
+  "title": "Bridal Convention",
+  "description": "An event our founder is invited to annually, as she is the main person to develop the balloon arch for the event each time. She also has her own table which she decorates exclusively.",
+  "order": 25,
+  "cover": "entrance-arch-centered.jpg",
+  "alt": {
+    "entrance-arch-centered.jpg": "A black and white balloon arch spanning double banquet-room doors with a black satin bow at the crown",
+    "entrance-arch-wide.jpg": "A wide view of a black and white balloon arch framing the entrance to a banquet room"
+  }
+}

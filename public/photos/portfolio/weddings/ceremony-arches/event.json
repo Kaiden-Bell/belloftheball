@@ -1,0 +1,17 @@
+{
+  "title": "Ceremony Arches & Garlands",
+  "description": "Ceremony installations from several weddings — an organic garland climbing a timber cross in sage, gold, and blush; the same cross reworked in purple and lavender wisteria; and a freestanding hoop arch with sheer draping and oversized paper poppies set among the pines.",
+  "order": 30,
+  "shape": 5,
+  "cover": "/photos/hero/church-garland-arch.jpg",
+  "include": [
+    "/photos/services/balloons-purple-wisteria.jpg",
+    "/photos/services/officiating-ceremony-arch.jpg"
+  ],
+  "alt": {
+    "/photos/hero/church-garland-arch.jpg": "A sage-green, gold, and white organic balloon garland arcing over a wooden cross at a stone-walled venue",
+    "/photos/services/balloons-purple-wisteria.jpg": "A purple and lavender organic balloon garland with wisteria accents arcing over a wooden cross at a stone-walled venue",
+    "/photos/services/officiating-ceremony-arch.jpg": "A wooden circular ceremony arch with sheer draping and oversized poppy flowers, set against a stone building and pine forest",
+    "purple-wisteria-hoop-arch.jpg": "A purple, lavender, and white organic balloon hoop with wisteria trails, set against a patterned backdrop"
+  }
+}

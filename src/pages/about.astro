@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+
+const principles = [
+  {
+    title: 'One call, everything handled.',
+    body: 'Every touchpoint reinforces that clients get a single partner for the entire event, not a referral list.',
+  },
+  {
+    title: 'Show the scale.',
+    body: "The breadth of what's offered is never underestimated — from structural design to concession rentals.",
+  },
+  {
+    title: 'Earned trust, not claimed trust.',
+    body: 'Credibility comes from demonstrating history, scope, and professionalism — never from inflated claims.',
+  },
+  {
+    title: 'Media-forward storytelling.',
+    body: 'Physical event presence — imagery, portfolio, real installations — leads every conversation.',
+  },
+  {
+    title: 'Effortless path to booking.',
+    body: "Every conversation moves toward the consultation without friction or distraction.",
+  },
+];
+---
+
+<Layout title="About | Bell of the Ball" description="Bell of the Ball is a full-service event planning and rental company — one partner for design, officiating, balloon artistry, and concession rentals.">
+  <section class="services" style="padding-top: 12rem;">
+    <div class="services-container">
+      <span class="section-label reveal">ABOUT</span>
+
+      <div class="service-item reveal">
+        <div class="service-text">
+          <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
+            End-to-end ownership, under one roof.
+          </h1>
+          <p>
+            Bell of the Ball is a full-service event planning and service rental company. We exist to give clients a
+            single point of contact for every layer of an event — from initial concept and structural design through
+            professional officiating, organic balloon arrangements, and party concession equipment rentals.
+          </p>
+          <p style="margin-top: 1.5rem;">
+            Where most vendors specialize in a single vertical, we combine premium event design, professional
+            officiating, organic balloon artistry, and concession rentals into one unified service — eliminating the
+            coordination tax clients pay when stitching together multiple vendors themselves.
+          </p>
+        </div>
+        <img
+          class="service-media shape-11"
+          src="/photos/about/sweetheart-table-detail.jpg"
+          alt="A sweetheart table with floating candles, blue and white florals, and a wooden Mr. and Mrs. sign"
+        />
+      </div>
+
+      <img
+        class="about-intro-second shape-12 reveal"
+        src="/photos/about/gala-ballroom-guests.jpg"
+        alt="A ballroom filled with seated guests at a formal gala under a chandelier"
+        loading="lazy"
+      />
+    </div>
+  </section>
+
+  <!--
+    TODO(client): confirm names and roles before launch. The source filenames
+    in assets/photos/headshots/ imply these identities, but the set also
+    contains a couples photo whose subjects don't obviously match the
+    individually-named files, so the labels below are unverified.
+  -->
+  <section class="about team-section">
+    <div class="about-container">
+      <span class="section-label reveal">WHO YOU'LL WORK WITH</span>
+      <h2 class="reveal" style="font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin: 1rem auto 3rem; max-width: 20ch;">
+        The same two people, start to finish.
+      </h2>
+
+      <div class="team-grid" data-parallax-scope>
+        <figure class="reveal">
+          <div class="team-lightbox" data-parallax-depth="1">
+            <div class="team-portrait-frame shape-15">
+              <img
+                class="team-portrait"
+                src="/photos/headshots/founder-portrait.jpg"
+                alt="Portrait of the founder of Bell of the Ball"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <figcaption>
+            <p class="team-name">Christa Bell</p>
+            <span class="label-text team-role">FOUNDER</span>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal delay-1">
+          <div class="team-lightbox" data-parallax-depth="0.65">
+            <div class="team-portrait-frame shape-16">
+              <img
+                class="team-portrait"
+                src="/photos/headshots/cofounder-portrait.jpg"
+                alt="Portrait of the co-founder of Bell of the Ball"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <figcaption>
+            <p class="team-name">Kevin Bell</p>
+            <span class="label-text team-role">CO-FOUNDER</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-container">
+      <span class="section-label reveal">WHAT WE BELIEVE</span>
+      <div style="max-width: 720px;">
+        {principles.map((p, i) => (
+          <div class="reveal" style="margin-bottom: 3rem; display: flex; gap: 2rem; align-items: baseline;">
+            <span class="label-text" style="flex-shrink: 0;">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 style="font-size: 1.75rem; margin-bottom: 0.5rem;">{p.title}</h3>
+              <p style="color: var(--color-warm-taupe); font-size: 1.1rem;">{p.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="cta-container reveal">
+      <h2 class="cta-title">See the Work,<br />Then Talk to Us</h2>
+      <CTAButton href="/portfolio" variant="secondary">View the Archive</CTAButton>
+    </div>
+  </section>
+</Layout>

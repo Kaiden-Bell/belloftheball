@@ -1,0 +1,38 @@
+---
+import { SITE_SLOGAN, CONTACT_EMAIL, CONTACT_PHONE } from '../data/site';
+import { FAQ_ITEMS } from '../data/faq';
+
+const year = new Date().getFullYear();
+const tel_href = `tel:${CONTACT_PHONE.replace(/[^+\d]/g, '')}`;
+const answer_count = FAQ_ITEMS.filter((item) => item.status === 'confirmed').length;
+---
+
+<footer class="footer">
+  <div class="footer-faq">
+    <div class="footer-faq-text">
+      <span class="label-text footer-faq-label">Before you enquire</span>
+      <p class="footer-faq-lead">
+        {answer_count} answers on deposits, lead times, how far we travel, what the base price covers, and the
+        things we don't take on.
+      </p>
+    </div>
+    <a class="footer-faq-link" href="/pricing#faq">
+      Read the FAQs <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="footer-content">
+    <p class="footer-brand">
+      <span class="footer-slogan">{SITE_SLOGAN}</span>
+      <span>&copy; {year} Bell of the Ball. All rights reserved.</span>
+    </p>
+    <div class="footer-links">
+      <a href="/pricing#faq">FAQs</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://www.facebook.com/profile.php?id=100095562942212" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/belloftheballinc/" target="_blank" rel="noopener">Instagram</a>
+      {CONTACT_PHONE && <a href={tel_href}>{CONTACT_PHONE}</a>}
+      <a href={`mailto:${CONTACT_EMAIL}`}>Inquiries</a>
+    </div>
+  </div>
+</footer>

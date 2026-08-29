@@ -1,0 +1,16 @@
+{
+  "title": "Jungle Baby Shower",
+  "description": "Sage, olive, and gold garland framing a jungle backdrop, with lettered baby blocks, plush safari animals, and a long banquet table run with a monstera-leaf runner and dark green chargers. A greenery banner marks the welcome wall, cupcakes sit out on monstera leaves along the dessert run, and the favour table is finished with olive and white balloons over printed keepsake cards.",
+  "order": 10,
+  "shape": 6,
+  "cover": "/photos/featured/jungle-baby-shower-garland.jpg",
+  "alt": {
+    "/photos/featured/jungle-baby-shower-garland.jpg": "A sage green and gold balloon garland framing a jungle-themed baby shower backdrop reading A Little King is on His Way",
+    "extended-jungle-banquet-table.jpg": "A long banquet table set with dark green and gold charger plates and a monstera leaf table runner",
+    "welcome-baby-greenery-banner.jpg": "A greenery-bordered Welcome Baby banner hung above a small table with a fountain and trailing foliage",
+    "greenery-backdrop-cupcakes.jpg": "Cupcakes iced in green set out on monstera leaves along a white dessert table under a eucalyptus backdrop",
+    "monstera-charger-place-setting.jpg": "A black and gold charger with a napkin in a wooden ring on a white cloth, beside a monstera leaf, greenery garland, and a printed keepsake card",
+    "favor-table-olive-balloons.jpg": "A favour table of printed keepsake cards and small white boxes under an olive, white, and gold balloon cluster",
+    "wild-one-backdrop-animal-cutouts.jpg": "A jungle-print A Wild One Is On The Way banner above a guest table with greenery garland and wooden animal cutouts for signing"
+  }
+}

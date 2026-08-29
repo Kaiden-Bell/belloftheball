@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import FAQSection from '../components/FAQSection.astro';
+import PricingEstimator from '../components/PricingEstimator.tsx';
+import { FAQ_ITEMS } from '../data/faq';
+
+const is_dev = import.meta.env.DEV;
+
+const answer_count = FAQ_ITEMS.filter((item) => item.status === 'confirmed').length;
+---
+
+<Layout
+  title="Pricing | Bell of the Ball"
+  description="Estimate the scope of your event — design and planning, officiating, balloon artistry, and concession rentals — then book a consultation for a real quote."
+>
+  <section class="hero" style="min-height: 55vh;">
+    <div class="hero-content">
+      <span class="section-label reveal">WHAT IT COSTS</span>
+      <h1
+        class="reveal"
+        style="font-family: var(--font-display); font-size: clamp(3rem, 8vw, 8rem); line-height: 0.95; margin: 1rem 0 2rem; color: var(--color-warm-ink);"
+      >
+        Build Your<br />Estimate
+      </h1>
+      <p class="hero-tagline reveal" style="max-width: 520px;">
+        Pick the shape of your event and add the layers you want. You will get a sense of scale in seconds — the
+        real number comes from a conversation.
+      </p>
+    </div>
+  </section>
+
+  <section class="services" style="padding-top: 0;">
+    <div class="services-container reveal">
+      <PricingEstimator client:visible show_placeholder_notice={is_dev} show_cta={false} />
+    </div>
+  </section>
+
+  <a class="scroll-cue reveal" href="#faq">
+    <span class="scroll-cue-inner">
+      <span class="label-text scroll-cue-label">Still have questions?</span>
+      <span class="scroll-cue-title">{answer_count} answers, before you book</span>
+      <span class="scroll-cue-lead">
+        Deposits and what holds a date. Lead times. How far we travel. What the base price actually covers — and
+        the handful of things we don't take on.
+      </span>
+      <span class="scroll-cue-action">
+        Read the answers <span class="scroll-cue-arrow" aria-hidden="true">↓</span>
+      </span>
+    </span>
+  </a>
+
+  <FAQSection />
+
+  <section class="final-cta">
+    <div class="cta-container reveal">
+      <h2 class="cta-title">Let's Talk<br />Real Numbers</h2>
+      <CTAButton href="/contact" variant="secondary">Book Consultation</CTAButton>
+    </div>
+  </section>
+</Layout>

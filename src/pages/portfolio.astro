@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import PortfolioGrid from '../components/PortfolioGrid.tsx';
+import { load_portfolio } from '../data/portfolio';
+
+// Read at build time from public/photos/portfolio/<category>/<event>/.
+const { events, categories } = load_portfolio();
+---
+
+<Layout title="Portfolio | Bell of the Ball" description="Selected work from Bell of the Ball — weddings, corporate launches, and celebrations, spanning event design, officiating, and organic balloon artistry.">
+  <section class="portfolio" style="padding-top: 12rem;">
+    <div class="portfolio-container">
+      <span class="section-label reveal">ARCHIVE</span>
+      <h1 class="portfolio-title reveal">Selected Works</h1>
+      <PortfolioGrid events={events} categories={categories} client:visible />
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="cta-container reveal">
+      <h2 class="cta-title">Your Event,<br />Our Archive</h2>
+      <CTAButton href="/contact" variant="secondary">Book Consultation</CTAButton>
+    </div>
+  </section>
+</Layout>
